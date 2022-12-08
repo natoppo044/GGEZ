@@ -141,7 +141,7 @@ end
 
 function Text(value)
     game.StarterGui:SetCore("SendNotification", {
-        Title = "Switch Notification", 
+        Title = "MODZ Notification", 
         Text = tostring(value),
         Icon = "http://www.roblox.com/asset/?id=9606070311",
         Duration = 10
@@ -149,7 +149,7 @@ function Text(value)
 end
 function Com()
     game.StarterGui:SetCore("SendNotification", {
-        Title = "Switch Notification", 
+        Title = "MODZ Notification", 
         Text = "✅  Complete",
         Icon = "http://www.roblox.com/asset/?id=9606070311",
         Duration = 5
@@ -3689,13 +3689,13 @@ if IKAI then
 end
 
 game.StarterGui:SetCore("SendNotification", {
-	Title = "Switch Notification", 
+	Title = "MODZ Notification", 
 	Text = "ฟังชั่นที่มีไอคอนนี้สามารถเปิด\nพร้อมฟามเวลได้",
 	Icon = "http://www.roblox.com/asset/?id=9610159123",
 	Duration = 8
 })
 
-local win = library:Window("Switch",[[Hub]],[[Version : Premium ]],"9606070311",Enum.KeyCode.RightControl)
+local win = library:Window("YOUTUBE",[[MODZ BLACK]],[[Version : Premium ]],"9606070311",Enum.KeyCode.RightControl)
 local General_Tab = win:Tab("General",[[7040391851]])
 local Quest_Tab = win:Tab("    Quest & Item",[[9606626859]])
 local PvP_Tab = win:Tab("PvP",[[9606626034]])
