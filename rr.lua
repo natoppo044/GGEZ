@@ -306,7 +306,7 @@ function Library:Window(Callback)
         Thickness = 1
     })
 
-    -- Library image
+    -- Library image 1361715547856541 คือไอดีรุป
     local Library_1 = Library:Create("ImageLabel", {
         Name = "Library",
         Parent = Banner_1,
@@ -317,7 +317,7 @@ function Library:Window(Callback)
         AnchorPoint = Vector2.new(0.5, 0.5),
         Position = UDim2.new(0.5, 0, 0.5, 0),
         Size = UDim2.new(0.9, 0, 0.9, 0),
-        Image = Library:Asset(136171554785654),
+        Image = Library:Asset(1361715547856541),
         ScaleType = Enum.ScaleType.Fit
     })
 
