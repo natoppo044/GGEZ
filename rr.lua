@@ -666,7 +666,7 @@ function Library:Window(Callback)
         Size = UDim2.new(1, 0, 1, 0),
         Font = Enum.Font.GothamSemibold,
         RichText = true,
-        Text = "ยืนยัน",
+        Text = "คัดลอกลิ้ง",
         TextColor3 = Color3.fromRGB(255, 255, 255),
         TextSize = 11,
         TextStrokeTransparency = 0.699999988079071
