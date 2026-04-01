@@ -220,7 +220,7 @@ function Library:Window(Callback)
         Name = "Background",
         Parent = Secret,
         AnchorPoint = Vector2.new(0.5, 0.5),
-        BackgroundColor3 = Color3.fromRGB(11, 11, 11),
+        BackgroundColor3 = Color3.fromRGB(15, 17, 21),
         BorderColor3 = Color3.fromRGB(0, 0, 0),
         BorderSizePixel = 0,
         Position = UDim2.new(0.5, 0, 0.5, 0),
@@ -229,6 +229,13 @@ function Library:Window(Callback)
 
     Library:Create("UICorner", {
         Parent = Background_1
+    })
+
+    Library:Create("UIStroke", {
+        Parent = Background_1,
+        Color = Color3.fromRGB(201, 169, 110),
+        Transparency = 0.5,
+        Thickness = 1
     })
 
     Library:Create("ImageLabel", {
@@ -243,8 +250,8 @@ function Library:Window(Callback)
         Size = UDim2.new(1, 120, 1, 120),
         ZIndex = 0,
         Image = "rbxassetid://8992230677",
-        ImageColor3 = Color3.fromRGB(0, 0, 0),
-        ImageTransparency = 0.5,
+        ImageColor3 = Color3.fromRGB(201, 169, 110),
+        ImageTransparency = 0.8,
         ScaleType = Enum.ScaleType.Slice,
         SliceCenter = Rect.new(99, 99, 99, 99)
     })
@@ -284,7 +291,7 @@ function Library:Window(Callback)
         Size = UDim2.new(1, 0, 0, 90),
         ClipsDescendants = true,
         Image = "rbxassetid://125411502674016",
-        ImageColor3 = Color3.fromRGB(255, 0, 127)
+        ImageColor3 = Color3.fromRGB(229, 192, 123)
     })
 
     Library:Create("UICorner", {
@@ -294,7 +301,8 @@ function Library:Window(Callback)
 
     Library:Create("UIStroke", {
         Parent = Banner_1,
-        Color = Color3.fromRGB(75, 0, 38),
+        Color = Color3.fromRGB(201, 169, 110),
+        Transparency = 0.4,
         Thickness = 1
     })
 
@@ -353,7 +361,7 @@ function Library:Window(Callback)
         Font = Enum.Font.GothamBold,
         RichText = true,
         Text = "DEKTHAI",
-        TextColor3 = Color3.fromRGB(255, 0, 127),
+        TextColor3 = Color3.fromRGB(229, 192, 123),
         TextSize = 28,
         TextStrokeTransparency = 0.699999988079071,
         TextXAlignment = Enum.TextXAlignment.Left
@@ -372,7 +380,7 @@ function Library:Window(Callback)
         Font = Enum.Font.GothamSemibold,
         RichText = true,
         Text = "100% Undectect",
-        TextColor3 = Color3.fromRGB(255, 255, 255),
+        TextColor3 = Color3.fromRGB(160, 164, 174),
         TextSize = 14,
         TextStrokeTransparency = 0.699999988079071,
         TextXAlignment = Enum.TextXAlignment.Left
@@ -402,7 +410,7 @@ function Library:Window(Callback)
     local Front_1 = Library:Create("Frame", {
         Name = "Front",
         Parent = Input_1,
-        BackgroundColor3 = Color3.fromRGB(20, 20, 20),
+        BackgroundColor3 = Color3.fromRGB(10, 11, 14),
         BorderColor3 = Color3.fromRGB(0, 0, 0),
         BorderSizePixel = 0,
         Size = UDim2.new(1, -40, 1, 0)
@@ -442,7 +450,7 @@ function Library:Window(Callback)
     local Enter_1 = Library:Create("Frame", {
         Name = "Enter",
         Parent = Input_1,
-        BackgroundColor3 = Color3.fromRGB(255, 0, 127),
+        BackgroundColor3 = Color3.fromRGB(229, 192, 123),
         BorderColor3 = Color3.fromRGB(0, 0, 0),
         BorderSizePixel = 0,
         Size = UDim2.new(0, 30, 0, 30)
@@ -496,7 +504,7 @@ function Library:Window(Callback)
     local AddLink_1 = Library:Create("Frame", {
         Name = "AddLink",
         Parent = Link_1,
-        BackgroundColor3 = Color3.fromRGB(10, 10, 10),
+        BackgroundColor3 = Color3.fromRGB(10, 11, 14),
         BorderColor3 = Color3.fromRGB(0, 0, 0),
         BorderSizePixel = 0,
         Size = UDim2.new(1, 0, 0, 45)
@@ -509,7 +517,8 @@ function Library:Window(Callback)
 
     Library:Create("UIStroke", {
         Parent = AddLink_1,
-        Color = Color3.fromRGB(75, 0, 38),
+        Color = Color3.fromRGB(201, 169, 110),
+        Transparency = 0.4,
         Thickness = 1
     })
 
@@ -522,7 +531,7 @@ function Library:Window(Callback)
         BorderSizePixel = 0,
         Size = UDim2.new(1, 0, 1, 0),
         Image = "rbxassetid://125411502674016",
-        ImageColor3 = Color3.fromRGB(255, 0, 128),
+        ImageColor3 = Color3.fromRGB(229, 192, 123),
         ScaleType = Enum.ScaleType.Crop
     })
 
@@ -565,7 +574,7 @@ function Library:Window(Callback)
         LayoutOrder = -1,
         Size = UDim2.new(0, 25, 0, 25),
         Image = "rbxassetid://96551286443180",
-        ImageColor3 = Color3.fromRGB(255, 0, 127)
+        ImageColor3 = Color3.fromRGB(229, 192, 123)
     })
 
     -- Text block
@@ -598,7 +607,7 @@ function Library:Window(Callback)
         Font = Enum.Font.GothamBold,
         RichText = true,
         Text = "24 Hours",
-        TextColor3 = Color3.fromRGB(255, 0, 127),
+        TextColor3 = Color3.fromRGB(229, 192, 123),
         TextSize = 15,
         TextStrokeTransparency = 0.699999988079071,
         TextXAlignment = Enum.TextXAlignment.Left
@@ -615,17 +624,16 @@ function Library:Window(Callback)
         Font = Enum.Font.Gotham,
         RichText = true,
         Text = "3 Checkpoint and Discord Invite",
-        TextColor3 = Color3.fromRGB(255, 255, 255),
+        TextColor3 = Color3.fromRGB(160, 164, 174),
         TextSize = 10,
         TextStrokeTransparency = 0.5,
-        TextTransparency = 0.20000000298023224,
         TextXAlignment = Enum.TextXAlignment.Left
     })
 
     local Getkey_1 = Library:Create("Frame", {
         Name = "Getkey",
         Parent = Info_1,
-        BackgroundColor3 = Color3.fromRGB(255, 0, 127),
+        BackgroundColor3 = Color3.fromRGB(229, 192, 123),
         BorderColor3 = Color3.fromRGB(0, 0, 0),
         BorderSizePixel = 0,
         Position = UDim2.new(0.730158806, 0, 0.166666672, 0),
