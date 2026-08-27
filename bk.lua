@@ -1,83 +1,259 @@
-.(getgenv()).Config = {
+--// Ouroboros - One Run UI Translator
+--// รันครั้งเดียว:
+--// 1. ติดตั้ง UI Translator
+--// 2. โหลด Ouroboros
+--// 3. Ouroboros สร้าง UI -> แปลให้อัตโนมัติ
+--// 4. UI ที่สร้างภายหลังก็แปลด้วย
 
- ["FastAttack"] = true,
+local GAME_URL =
+    "https://raw.githubusercontent.com/bloxfruitsnokey/Fluent/refs/heads/main/EZ/script.luau"
 
- ["Attack"] = true
+--==================================================
+-- TRANSLATION
+--==================================================
 
-} 
+local TRANSLATIONS = {
 
-coroutine.wrap(function()
+["EZ Hub - Blox Fruits"] = "EZ Hub - Blox Fruits",
+["Farm"] = "ฟาร์ม",
+["Config"] = "การตั้งค่า",
+["Fighting Style"] = "สไตล์การต่อสู้",
+["Items Farm"] = "ฟาร์มไอเทม",
+["Sea Events"] = "อีเวนต์ทะเล",
+["Mirage - RaceV4"] = "มิราจ - เผ่า V4",
+["Drago Dojo"] = "สำนักดราโก",
+["Prehistoric"] = "ยุคก่อนประวัติศาสตร์",
+["Raid"] = "เรด",
+["Combat PVP"] = "ต่อสู้ PVP",
+["Boss Spawn Notification"] = "แจ้งเตือนบอสเกิด",
+["Notifies you when a world boss spawns in this server"] = "แจ้งเตือนคุณเมื่อบอสโลกเกิดในเซิร์ฟเวอร์นี้",
+["Rare Island Spawn Notification"] = "แจ้งเตือนเกาะหายากเกิด",
+["Notifies you when Mirage/Kitsune Island spawns"] = "แจ้งเตือนคุณเมื่อเกาะมิราจ/คิตسุเนะเกิด",
+["Buso/Aura Colours"] = "สีฮา/ออร่า",
+["Current Buso Color:"] = "สีฮาคิปัจจุบัน:",
+["None"] = "ไม่มี",
+["Auto Buso Rarity:"] = "สุ่มความหายากฮาคิอัตโนมัติ:",
+["Random"] = "สุ่ม",
+["Auto Buy Buso Color"] = "ซื้อสีฮาคิอัตโนมัติ",
+["Teleport to Barista and buy this Buso color tier"] = "เทเลพอร์ตไปหา บาริสต้า และซื้อสีฮาคิระดับนี้",
+["Auto Teleport Barista Cousin"] = "เทเลพอร์ตไปหาญาติบาริสต้าอัตโนมัติ"
+}
 
-local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()
+--==================================================
+-- SETTINGS
+--==================================================
 
-    for v,v in pairs(getreg()) do
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
 
-        if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
+local LocalPlayer = Players.LocalPlayer
 
-             for v,v in pairs(debug.getupvalues(v)) do
+-- เก็บ object ที่เราเคยติดตามแล้ว
+local tracked = {}
 
-                if typeof(v) == "table" then
+--==================================================
+-- TRANSLATOR
+--==================================================
 
-                    spawn(function()
-
-                        game:GetService("RunService").RenderStepped:Connect(function()
-
-                            if getgenv().Config['FastAttack'] then
-
-                                 pcall(function()
-
-                                     v.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
-
-                                     v.activeController.attacking = false
-
-                                     v.activeController.increment = 4
-
-                                     v.activeController.blocking = false   
-
-                                     v.activeController.hitboxMagnitude = 150
-
-    		                         v.activeController.humanoid.AutoRotate = true    	                      	     v.activeController.focusStart = 0
-
-    	                      	     v.activeController.currentAttackTrack = 0
-
-                                     sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRaxNerous", math.huge)
-
-                                 end)
-
-                             end
-
-                         end)
-
-                    end)
-
-                end
-
-            end
-
-        end
-
+local function translateText(text)
+    if type(text) ~= "string" or text == "" then
+        return text
     end
 
-end)();
+    -- แปลแบบตรงตัวก่อน
+    local exact = TRANSLATIONS[text]
 
-spawn(function()
+    if exact then
+        return exact
+    end
 
-    game:GetService("RunService").RenderStepped:Connect(function()
+    -- แปลข้อความที่มีคำเหล่านี้อยู่ข้างใน
+    local result = text
 
-        if getgenv().Config['ClickAttack'] then
+    for english, thai in pairs(TRANSLATIONS) do
+        if string.find(result, english, 1, true) then
+            result = string.gsub(result, english, thai)
+        end
+    end
 
-             pcall(function()
+    return result
+end
 
-                game:GetService'VirtualUser':CaptureController()
+--==================================================
+-- HOOK TEXT OBJECT
+--==================================================
 
-			    game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
+local function hookTextObject(obj)
 
+    if tracked[obj] then
+        return
+    end
+
+    if not (
+        obj:IsA("TextLabel")
+        or obj:IsA("TextButton")
+        or obj:IsA("TextBox")
+    ) then
+        return
+    end
+
+    tracked[obj] = true
+
+    -- แปลทันที
+    pcall(function()
+        local oldText = obj.Text
+        local newText = translateText(oldText)
+
+        if newText ~= oldText then
+            obj.Text = newText
+        end
+    end)
+
+    -- ถ้าสคริปต์เปลี่ยนข้อความภายหลัง
+    pcall(function()
+
+        obj:GetPropertyChangedSignal("Text"):Connect(function()
+
+            if not obj.Parent then
+                return
+            end
+
+            local oldText = obj.Text
+            local newText = translateText(oldText)
+
+            if newText ~= oldText then
+                obj.Text = newText
+            end
+
+        end)
+
+    end)
+end
+
+--==================================================
+-- SCAN UI
+--==================================================
+
+local function scan(root)
+
+    if not root then
+        return
+    end
+
+    -- root เอง
+    pcall(function()
+        hookTextObject(root)
+    end)
+
+    -- ลูกทั้งหมด
+    pcall(function()
+
+        for _, obj in ipairs(root:GetDescendants()) do
+            hookTextObject(obj)
+        end
+
+    end)
+end
+
+--==================================================
+-- WATCH NEW UI
+--==================================================
+
+local function watchRoot(root)
+
+    if not root then
+        return
+    end
+
+    scan(root)
+
+    pcall(function()
+
+        root.DescendantAdded:Connect(function(obj)
+
+            task.defer(function()
+                hookTextObject(obj)
             end)
 
+        end)
+
+    end)
+end
+
+--==================================================
+-- START TRANSLATOR FIRST
+--==================================================
+
+watchRoot(CoreGui)
+
+if LocalPlayer then
+
+    local playerGui = LocalPlayer:FindFirstChildOfClass("PlayerGui")
+
+    if playerGui then
+        watchRoot(playerGui)
+    end
+
+    -- เผื่อ PlayerGui ถูกสร้างภายหลัง
+    LocalPlayer.ChildAdded:Connect(function(child)
+
+        if child:IsA("PlayerGui") then
+            watchRoot(child)
         end
 
     end)
 
-end)
-loadstring(game:HttpGet("https://pastebin.com/raw/jmRUdL17"))()
+end
 
+--==================================================
+-- LOAD OUROBOROS
+--==================================================
+
+task.wait()
+
+local success, source = pcall(function()
+
+    return game:HttpGet(GAME_URL)
+
+end)
+
+if not success then
+
+    warn("[Ouroboros Translator] โหลดสคริปต์ไม่สำเร็จ")
+    warn(source)
+
+    return
+end
+
+if type(source) ~= "string" or #source < 10 then
+
+    warn("[Ouroboros Translator] ได้ source ไม่ถูกต้อง")
+
+    return
+end
+
+--==================================================
+-- EXECUTE
+--==================================================
+
+local loader, compileError = loadstring(source)
+
+if not loader then
+
+    warn("[Ouroboros Translator] Compile Error:")
+    warn(compileError)
+
+    return
+end
+
+local executed, runtimeError = pcall(loader)
+
+if not executed then
+
+    warn("[Ouroboros Translator] Runtime Error:")
+    warn(runtimeError)
+
+    return
+end
+
+print("[Ouroboros Translator] Loaded successfully")
