@@ -4,7 +4,7 @@ local GAME_URL =
     "https://raw.githubusercontent.com/JaxRol/ZeroPoint/refs/heads/main/KeySystem"
 
 --==================================================
--- TRANSLATION
+-- TRANSLATION ใครก็ทำได้ไอ้ควาย!!
 --==================================================
 
 local TRANSLATIONS = {
