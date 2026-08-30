@@ -1,9 +1,4 @@
---// Ouroboros - One Run UI Translator
---// รันครั้งเดียว:
---// 1. ติดตั้ง UI Translator
---// 2. โหลด Ouroboros
---// 3. Ouroboros สร้าง UI -> แปลให้อัตโนมัติ
---// 4. UI ที่สร้างภายหลังก็แปลด้วย
+
 
 local GAME_URL =
     "https://raw.githubusercontent.com/JaxRol/ZeroPoint/refs/heads/main/KeySystem"
