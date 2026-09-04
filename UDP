@@ -268,7 +268,7 @@ subtitle.Size = UDim2.new(1, -40, 0, 25)
 subtitle.Position = UDim2.new(0, 20, 0, 78)
 
 subtitle.BackgroundTransparency = 1
-subtitle.Text = "A new script or loader is available."
+subtitle.Text = "มีสคริปต์หรือตัวโหลดใหม่พร้อมใช้งาน."
 
 subtitle.TextColor3 = Color3.fromRGB(235, 235, 240)
 subtitle.TextSize = 14
@@ -288,7 +288,7 @@ description.Size = UDim2.new(1, -40, 0, 25)
 description.Position = UDim2.new(0, 20, 0, 99)
 
 description.BackgroundTransparency = 1
-description.Text = "Copy the link below and open it in your browser."
+description.Text = "คัดลอกลิงก์ด้านล่างแล้วเปิดในเบราว์เซอร์ของคุณ."
 
 description.TextColor3 = Color3.fromRGB(135, 135, 145)
 description.TextSize = 12
