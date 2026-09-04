@@ -1,5 +1,5 @@
 local GAME_URL =
-    "loadstring(game:HttpGet("https://raw.githubusercontent.com/bloxfruitsnokey/Banana/refs/heads/main/Scythe/hub.luau"))()"
+    "https://raw.githubusercontent.com/bloxfruitsnokey/Banana/refs/heads/main/Scythe/hub.luau"
 
 --==================================================
 -- TRANSLATION ไอ้ควาย ของง่ายๆ ใครก็ทำได้
