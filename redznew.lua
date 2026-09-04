@@ -1,6 +1,6 @@
 
 local GAME_URL =
-    "https://raw.githubusercontent.com/realredz999/NewRedz/main/main.lua"
+    "https://raw.githubusercontent.com/fakekuri/idk-hub/refs/heads/main/RedzHub.luau"
 
 --==================================================
 -- TRANSLATION
