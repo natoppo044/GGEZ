@@ -5,4 +5,4 @@ GravityHub = {
     SaveSetting = false,
     AutoExecute = false
 }
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/MainPremium.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/natoppo044/GGEZ/refs/heads/main/GravityHub%20MainPremium.lua"))()
